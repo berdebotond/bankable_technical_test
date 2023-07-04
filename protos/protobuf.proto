@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+
+package invoice;
+
+option go_package = "github.com/berdebotond/bankable_technical_test";
+
+import "google/protobuf/empty.proto";
+
+// The invoice message represents an invoice.
+message Invoice {
+  string id = 1;
+  string issuer_id = 2;
+  string status = 3;
+  string investor_id = 4;
+}
+
+// The issuer message represents an issuer.
+message Issuer {
+  string id = 1;
+  float balance = 2;
+}
+
+// The investor message represents an investor.
+message Investor {
+  string id = 1;
+  float balance = 2;
+}
+
+// The bid message represents a bid.
+message Bid {
+  string id = 1;
+  string investor_id = 2;
+  string invoice_id = 3;
+  float amount = 4;
+}
+
+// The InvoiceService provides operations on invoices.
+service InvoiceService {
+  rpc CreateInvoice(Invoice) returns (Invoice);
+  rpc GetInvoice(Invoice) returns (Invoice);
+  rpc GetIssuer(Issuer) returns (Issuer);
+  //I'm using a stream to get all the investors since we don't know how many there are
+  rpc GetInvestors(google.protobuf.Empty) returns (stream Investor);
+  rpc PlaceBid(Bid) returns (Bid);
+  rpc ApproveTrade(Bid) returns (Bid);
+}
