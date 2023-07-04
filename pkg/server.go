@@ -32,6 +32,7 @@ func (s *server) PlaceBid(ctx context.Context, in *pb.Bid) (*pb.Bid, error) {
 
 // ApproveTrade approves a trade and set invoice status to closed
 func (s *server) ApproveTrade(ctx context.Context, in *pb.Bid) (*pb.Bid, error) {
+	log.Printf("Approving trade: %v", in)
 	_, err := s.db.Exec("UPDATE invoice SET status = 'closed' WHERE id = $1", in.GetInvoiceId())
 	if err != nil {
 		return nil, err

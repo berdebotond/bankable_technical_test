@@ -10,16 +10,8 @@ import (
 	_ "github.com/lib/pq"
 )
 
-const (
-	host     = "localhost"
-	port     = "5432"
-	user     = "username"
-	password = "password"
-	dbname   = "test"
-)
-
 // SetupDatabase sets up the database connection and returns the db object
-func SetupDatabase() *sql.DB {
+func SetupDatabase(host string, port string, user string, password string, dbname string) *sql.DB {
 	psqlInfo := fmt.Sprintf("host=%s port=%s user=%s "+
 		"password=%s dbname=%s sslmode=disable",
 		host, port, user, password, dbname)

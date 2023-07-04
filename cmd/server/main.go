@@ -1,14 +1,22 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net"
+	"os"
 
+	cfg "github.com/berdebotond/bankable_technical_test/config"
 	"github.com/berdebotond/bankable_technical_test/pkg"
 )
 
 func main() {
-	db := pkg.SetupDatabase()
+	config, err := cfg.LoadConfig()
+	if err != nil {
+		fmt.Printf("failed to load config: %v\n", err)
+		os.Exit(1)
+	}
+	db := pkg.SetupDatabase(config.DatabaseHost, config.DatabasePort, config.DatabaseUser, config.DatabasePassword, config.DatabaseName)
 	defer db.Close()
 
 	s := pkg.SetupServer(db)
