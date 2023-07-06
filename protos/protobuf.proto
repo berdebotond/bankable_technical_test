@@ -13,18 +13,23 @@ message Invoice {
   string issuer_id = 2;
   string status = 3;
   string investor_id = 4;
+  float price = 5;
 }
 
 // The issuer message represents an issuer.
 message Issuer {
   string id = 1;
   float balance = 2;
+  string name = 3;
+
 }
 
 // The investor message represents an investor.
 message Investor {
   string id = 1;
   float balance = 2;
+  string name = 3;
+
 }
 
 // The bid message represents a bid.
@@ -33,6 +38,7 @@ message Bid {
   string investor_id = 2;
   string invoice_id = 3;
   float amount = 4;
+  string status = 5;
 }
 
 // The InvoiceService provides operations on invoices.

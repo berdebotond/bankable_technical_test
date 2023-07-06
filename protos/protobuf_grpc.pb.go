@@ -35,6 +35,7 @@ type InvoiceServiceClient interface {
 	CreateInvoice(ctx context.Context, in *Invoice, opts ...grpc.CallOption) (*Invoice, error)
 	GetInvoice(ctx context.Context, in *Invoice, opts ...grpc.CallOption) (*Invoice, error)
 	GetIssuer(ctx context.Context, in *Issuer, opts ...grpc.CallOption) (*Issuer, error)
+	//I'm using a stream to get all the investors since we don't know how many there are
 	GetInvestors(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (InvoiceService_GetInvestorsClient, error)
 	PlaceBid(ctx context.Context, in *Bid, opts ...grpc.CallOption) (*Bid, error)
 	ApproveTrade(ctx context.Context, in *Bid, opts ...grpc.CallOption) (*Bid, error)
@@ -132,6 +133,7 @@ type InvoiceServiceServer interface {
 	CreateInvoice(context.Context, *Invoice) (*Invoice, error)
 	GetInvoice(context.Context, *Invoice) (*Invoice, error)
 	GetIssuer(context.Context, *Issuer) (*Issuer, error)
+	//I'm using a stream to get all the investors since we don't know how many there are
 	GetInvestors(*empty.Empty, InvoiceService_GetInvestorsServer) error
 	PlaceBid(context.Context, *Bid) (*Bid, error)
 	ApproveTrade(context.Context, *Bid) (*Bid, error)
