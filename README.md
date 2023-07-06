@@ -49,8 +49,13 @@ The server will start and listen on port 50051.
 
 ## How to Test
 
+### Unit tests
+
 This project uses Go's built-in testing framework. You can run the tests by navigating to the root directory of the project and running `go test ./...` 
 
+### E2E integartion test
+
+This project has an inplemented end 2 end integartion test, You can run the test by navigating to the root directory of the project and running `go run test/e2e_client_flow.go`
 Please ensure you have a PostgreSQL database running and the connection details in `config.json` are correct, as the tests may interact with the database.
 
 ## Docker
